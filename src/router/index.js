@@ -23,8 +23,8 @@ const routes = [
     meta: { layout: "MainLayout" }
   },
   {
-    path: "/record",
-    name: "detail",
+    path: "/detail-record",
+    name: "detailRecord",
     component: DetailRecord,
     meta: { layout: "MainLayout" }
   },

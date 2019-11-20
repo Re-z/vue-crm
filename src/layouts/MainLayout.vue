@@ -2,7 +2,7 @@
 <!-- Шаблон для отображения основного контента -->
 <div class="app-main-layout">
     <app-navbar @burgerClick="toggleSidebar"></app-navbar>
-	
+
     <!-- передаем пропс в сайдбар, чтобы там убрать класс, который его закрывает  -->
     <app-sidebar :sideBarIsOpen="sideBarIsOpen"></app-sidebar>
 
@@ -15,9 +15,9 @@
     </main>
 
     <div class="fixed-action-btn">
-        <a class="btn-floating btn-large blue" href="#">
+        <router-link class="btn-floating btn-large blue" to="/record">
             <i class="large material-icons">add</i>
-        </a>
+        </router-link>
     </div>
 </div>
 </template>

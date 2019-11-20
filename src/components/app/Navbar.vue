@@ -5,12 +5,12 @@
             <a href="#" @click.prevent="$emit('burgerClick')">
                 <i class="material-icons black-text">dehaze</i>
             </a>
-            <span class="black-text">12.12.12</span>
+            <span class="black-text">12.12.13</span>
         </div>
 
         <ul class="right hide-on-small-and-down">
             <li>
-                <a class="dropdown-trigger black-text" href="#" data-target="dropdown">
+                <a class="dropdown-trigger black-text" href="#" data-target="dropdown" ref="dropdown">
                     USER NAME
                     <i class="material-icons right">arrow_drop_down</i>
                 </a>
@@ -35,7 +35,16 @@
 </template>
 
 <script>
+
 export default {
-	
+    mounted() {
+        // ф-я, инициализирующая dropdown в materialize.css
+        // первый параметр - дом элемент-триггер дропдауна, который
+        // мы берем с помощью ссылки по $refs, второй - объект настроек
+
+        window.M.Dropdown.init(this.$refs.dropdown, {
+            constrainWidth: true,
+        });
+    }
 }
 </script>

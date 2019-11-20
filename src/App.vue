@@ -13,6 +13,8 @@
 <script>
 import EmptyLayout from "@/layouts/EmptyLayout";
 import MainLayout from "@/layouts/MainLayout";
+import "../node_modules/materialize-css/dist/js/materialize.min.js";
+
 export default {
     computed: {
         layout() {
@@ -27,6 +29,8 @@ export default {
         EmptyLayout,
         MainLayout
     }
+    
+
 };
 
 </script>
