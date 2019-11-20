@@ -1,59 +1,14 @@
 <template>
 <!-- Шаблон для отображения основного контента -->
 <div class="app-main-layout">
-    <nav class="navbar orange lighten-1">
-        <div class="nav-wrapper">
-            <div class="navbar-left">
-                <a href="#">
-                    <i class="material-icons black-text">dehaze</i>
-                </a>
-                <span class="black-text">12.12.12</span>
-            </div>
+    <app-navbar @burgerClick="toggleSidebar"></app-navbar>
+	
+    <!-- передаем пропс в сайдбар, чтобы там убрать класс, который его закрывает  -->
+    <app-sidebar :sideBarIsOpen="sideBarIsOpen"></app-sidebar>
 
-            <ul class="right hide-on-small-and-down">
-                <li>
-                    <a class="dropdown-trigger black-text" href="#" data-target="dropdown">
-                        USER NAME
-                        <i class="material-icons right">arrow_drop_down</i>
-                    </a>
-
-                    <ul id="dropdown" class="dropdown-content">
-                        <li>
-                            <a href="#" class="black-text">
-                                <i class="material-icons">account_circle</i>Профиль
-                            </a>
-                        </li>
-                        <li class="divider" tabindex="-1"></li>
-                        <li>
-                            <a href="#" class="black-text">
-                                <i class="material-icons">assignment_return</i>Выйти
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <ul class="sidenav app-sidenav open">
-        <li>
-            <a href="#" class="waves-effect waves-orange pointer">Счет</a>
-        </li>
-        <li>
-            <a href="#" class="waves-effect waves-orange pointer">История</a>
-        </li>
-        <li>
-            <a href="#" class="waves-effect waves-orange pointer">Планирование</a>
-        </li>
-        <li>
-            <a href="#" class="waves-effect waves-orange pointer">Новая запись</a>
-        </li>
-        <li>
-            <a href="#" class="waves-effect waves-orange pointer">Категории</a>
-        </li>
-    </ul>
-
-    <main class="app-content">
+    <!-- когда сайдбар закрыт, то основному блоку
+	присваивается класс, который растягивает его ширину  -->
+    <main class="app-content" :class="{'full': !sideBarIsOpen}">
         <div class="app-page">
             <router-view></router-view>
         </div>
@@ -66,3 +21,25 @@
     </div>
 </div>
 </template>
+
+<script>
+import Navbar from '@/components/app/Navbar'
+import Sidebar from '@/components/app/Sidebar'
+export default {
+    data() {
+        return {
+            sideBarIsOpen: true
+        }
+    },
+    methods: {
+        toggleSidebar() {
+            this.sideBarIsOpen = !this.sideBarIsOpen
+        }
+    },
+
+    components: {
+        'app-navbar': Navbar,
+        'app-sidebar': Sidebar
+    }
+}
+</script>

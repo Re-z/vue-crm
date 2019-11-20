@@ -1,16 +1,20 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-import Login from "../views/Login.vue";
-import Categories from "../views/Categories.vue";
-import DetailRecord from "../views/DetailRecord.vue";
-import History from "../views/History.vue";
-import Planning from "../views/Planning.vue";
-import Profile from "../views/Profile.vue";
-import Record from "../views/Record.vue";
-import Register from "../views/Register.vue";
+// lazy loading routes
+const Home = () => import ("../views/Home.vue");
+const Login = () => import ("../views/Login.vue");
+const Categories = () => import ("../views/Categories.vue");
+const DetailRecord = () => import ("../views/DetailRecord.vue");
+const History = () => import ("../views/History.vue");
+const Planning = () => import ("../views/Planning.vue");
+const Profile = () => import ("../views/Profile.vue");
+const Record = () => import ("../views/Record.vue");
+const Register = () => import ("../views/Register.vue");
+
+
 Vue.use(VueRouter);
 
+// const Categories = () => import('../views/Categories.vue')
 const routes = [
   {
     path: "/",
@@ -48,28 +52,25 @@ const routes = [
     component: Planning,
     meta: { layout: "MainLayout" }
   },
+
   {
     path: "/categories",
     name: "categories",
     meta: { layout: "MainLayout" },
     component: Categories
-
-    // component: () => {import('../views/Categories.vue')}
   },
   {
     path: "/login",
     name: "login",
     meta: { layout: "EmptyLayout" },
     component: Login
-    // component: () => {import('../views/Login.vue')}
   },
   {
     path: "/register",
     name: "register",
     meta: { layout: "EmptyLayout" },
     component: Register
-    // component: () => {import('../views/Login.vue')}
-  },
+  }
 ];
 
 const router = new VueRouter({

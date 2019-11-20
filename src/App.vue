@@ -9,6 +9,7 @@
 </div>
 </template>
 
+
 <script>
 import EmptyLayout from "@/layouts/EmptyLayout";
 import MainLayout from "@/layouts/MainLayout";
@@ -17,9 +18,9 @@ export default {
         layout() {
             //данные для отображения типа шаблона
             // берутся из метаданных каждой страницы в роутере
-            return this.$route.meta.layout;
+            return (this.$route.meta.layout || 'EmptyLayout');
             //вовзратит или EmptyLayout, если это окна авторизации
-            // или MainLayout, если обычные окна
+            // или MainLayout, если обычные окно
         }
     },
     components: {
@@ -27,10 +28,11 @@ export default {
         MainLayout
     }
 };
+
 </script>
 
 <style lang="scss">
-@import url("assets/css/index.css");
 @import url("~materialize-css/dist/css/materialize.min.css");
+@import url("assets/css/index.css");
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 </style>
