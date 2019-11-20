@@ -1,4 +1,5 @@
 <template>
+<!-- Шаблон для отображения основного контента -->
 <div class="app-main-layout">
     <nav class="navbar orange lighten-1">
         <div class="nav-wrapper">
@@ -16,7 +17,7 @@
                         <i class="material-icons right">arrow_drop_down</i>
                     </a>
 
-                    <ul id='dropdown' class='dropdown-content'>
+                    <ul id="dropdown" class="dropdown-content">
                         <li>
                             <a href="#" class="black-text">
                                 <i class="material-icons">account_circle</i>Профиль
