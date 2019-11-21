@@ -5,7 +5,7 @@
             <a href="#" @click.prevent="$emit('burgerClick')">
                 <i class="material-icons black-text">dehaze</i>
             </a>
-            <!-- используем фильтр dateFilter -->
+            <!-- используем фильтр dateFilter, который подключен глобально -->
             <span class="black-text">{{ date | dateFilter('datetime') }}</span>
         </div>
 

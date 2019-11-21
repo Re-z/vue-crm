@@ -4,7 +4,9 @@ import router from "./router";
 import store from "./store";
 import dateFilter from '@/filters/date.filter.js'
 
-Vue.config.productionTip = false;
+import Vuelidate from 'vuelidate'
+
+Vue.use(Vuelidate);
 
 Vue.filter('dateFilter', dateFilter)
 
