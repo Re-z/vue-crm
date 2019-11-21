@@ -5,7 +5,8 @@
             <a href="#" @click.prevent="$emit('burgerClick')">
                 <i class="material-icons black-text">dehaze</i>
             </a>
-            <span class="black-text">12.12.13</span>
+            <!-- используем фильтр dateFilter -->
+            <span class="black-text">{{ date | dateFilter('datetime') }}</span>
         </div>
 
         <ul class="right hide-on-small-and-down">
@@ -17,13 +18,13 @@
 
                 <ul id="dropdown" class="dropdown-content">
                     <li>
-                        <a href="#" class="black-text">
+                        <router-link to="profile" class="black-text">
                             <i class="material-icons">account_circle</i>Профиль
-                        </a>
+                        </router-link>
                     </li>
                     <li class="divider" tabindex="-1"></li>
                     <li>
-                        <a href="#" class="black-text">
+                        <a href="#" class="black-text" @click.prevent="logout">
                             <i class="material-icons">assignment_return</i>Выйти
                         </a>
                     </li>
@@ -35,16 +36,29 @@
 </template>
 
 <script>
-
 export default {
+    data() {
+        return {
+            date: new Date
+        }
+    },
+
+    methods: {
+        logout() {
+            this.$router.push('/login?msg=logout')
+        }
+    },
     mounted() {
+        // каждую секунду обновляем дату
+        setInterval(() => {
+            this.date = new Date
+        }, 1000)
         // ф-я, инициализирующая dropdown в materialize.css
         // первый параметр - дом элемент-триггер дропдауна, который
         // мы берем с помощью ссылки по $refs, второй - объект настроек
-
         window.M.Dropdown.init(this.$refs.dropdown, {
             constrainWidth: true,
         });
-    }
+    },
 }
 </script>
