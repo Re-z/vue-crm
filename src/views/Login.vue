@@ -9,7 +9,6 @@
             <input 
                 id="email" 
                 type="text" 
-                class="validate" 
                 :class="{'invalid' : ($v.email.$dirty && !$v.email.required) || ($v.email.$dirty && !$v.email.email)}" 
                 v-model.trim="email" 
             />
@@ -18,7 +17,7 @@
             <small
                 v-if="$v.email.$dirty && !$v.email.required"
                 class="helper-text invalid"
-            >Это поле обязательное для заполнения</small>
+            >Введите эмейл</small>
              <small
                 v-else-if="$v.email.$dirty && !$v.email.email"
                 class="helper-text invalid"
@@ -28,14 +27,13 @@
             <input 
                 id="password" 
                 type="password" 
-                class="validate" 
                 :class="{'invalid' : ($v.password.$dirty && !$v.password.required) || ($v.password.$dirty && !$v.password.minLength)}" 
                 v-model="password"/>
             <label for="password">Пароль</label>
             <small 
                 v-if="$v.password.$dirty && !$v.password.required"
                 class="helper-text invalid">
-                Это поле обязательное для заполнения</small>
+                Введите пароль</small>
             <small 
                 v-if="$v.password.$dirty && !$v.password.minLength"
                 class="helper-text invalid" >
@@ -75,12 +73,12 @@ export default {
     validations: {
     // для модели email применяем проверки email и required
       email: {email, required},
-      password: {required, minLength: minLength(8)}
+      password: {required, minLength: minLength(6)}
     },
     methods: {
         handleLoginForm() {
           if(this.$v.$invalid) {
-            this.$v.$touch();
+            this.$v.$touch(); //устанавливает флаг dirty в true
           }
           else {
               this.$router.push('/')
