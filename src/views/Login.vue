@@ -76,17 +76,22 @@ export default {
       password: {required, minLength: minLength(6)}
     },
     methods: {
-        handleLoginForm() {
+       async handleLoginForm() {
           if(this.$v.$invalid) {
             this.$v.$touch(); //устанавливает флаг dirty в true
           }
           else {
-              this.$router.push('/')
+                const formData = {
+                    email: this.email,
+                    password: this.password
+                }
+                try {
+                    await this.$store.dispatch('login', formData)
+                    this.$router.push('/')
+                } catch(err) {
+                    // console.log(err)
+                }
           }
-        //   const formData = {
-        //       email: this.email,
-        //       password: this.password
-        //   }
         }
     }
 }

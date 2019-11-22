@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "core-js": "^3.3.2",
+    "firebase": "^7.5.0",
     "install": "^0.13.0",
     "materialize-css": "^1.0.0-rc.2",
     "npm": "^6.13.1",

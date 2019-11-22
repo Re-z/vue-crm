@@ -46,7 +46,6 @@
           class="validate" 
           v-model="name"
           :class="{'invalid' : ($v.name.$dirty && !$v.name.required)}" 
-
         />
         <label for="name">Имя</label>
         <small 
