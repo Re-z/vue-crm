@@ -96,17 +96,23 @@ export default {
       agree: {function() {return this.agree}} //если чекбокс чекнут - возвращаем true
     },
     methods: {
-      handleRegForm(){
+      async handleRegForm(){
         if(this.$v.$invalid) {
             this.$v.$touch(); //устанавливает флаг dirty в true
           }
           else {
-            //   const formData = {
-        //       email: this.email,
-        //       password: this.passwordб
-                // name: this.name
-        //   }
-              this.$router.push('/')
+            //формируем объект с данными юзера, которые будем передавать в Firebase
+            const formData = {
+              email: this.email,
+              password: this.password,
+              name: this.name
+            }
+            try {
+              await this.$store.dispatch('register', formData);
+              this.$router.push('/');
+            } catch (error) {
+              this.$store.commit('setError', error.message)
+            }
           }
       }
     },

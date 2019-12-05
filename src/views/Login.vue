@@ -89,8 +89,7 @@ export default {
                     await this.$store.dispatch('login', formData)
                     this.$router.push('/')
                 } catch(err) {
-                    console.log(err)
-                    alert('no user!')
+                    this.$store.commit('setError', err.message) 
                 }
           }
         }
