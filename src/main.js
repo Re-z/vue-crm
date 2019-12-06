@@ -3,7 +3,9 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import dateFilter from '@/filters/date.filter.js'
+import currencyFilter from '@/filters/currency.filter.js'
 import Vuelidate from 'vuelidate'
+import Loader from '@/components/app/Loader'
 
 import Firebase from 'firebase/app'
 import 'firebase/auth'
@@ -12,7 +14,8 @@ import 'firebase/database'
 Vue.use(Vuelidate);
 
 Vue.filter('dateFilter', dateFilter)
-
+Vue.filter('currencyFilter', currencyFilter)
+Vue.component('app-loader', Loader)
 
 const firebaseConfig = {
   apiKey: "AIzaSyB4go9is5197KSOmyVl3LUIL-DPtzbpnOY",
