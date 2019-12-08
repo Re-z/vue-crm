@@ -5,7 +5,7 @@
               <h4>Редактировать</h4>
             </div>
 
-            <form>
+            <form @submit.prevent="submitForm">
               <div class="input-field">
                 <select ref="select" v-model="current">
                   <option
@@ -76,6 +76,27 @@
         current: null, //дефолтная категория
       }
     },
+    methods: {
+      async submitForm() {
+        if(this.$v.invalid) {
+          this.$v.$touch();
+          return;
+        } else {
+          try {
+            const categoryData = {
+              id: this.current,
+              title: this.title,
+              limit: this.limit,
+            };
+            await this.$store.dispatch('updateCategory', categoryData)
+            alert("Категория успешно обновлена")
+            this.$emit('updated', categoryData);
+          } catch (e) {
+
+          }
+        }
+      }
+    },
     mounted() {
       this.select = M.FormSelect.init(this.$refs.select);
       // при загрузке - обновляем значение текстовых полей с помощью метода из materialize,
@@ -109,6 +130,8 @@
       limit: {minValue: minValue(10)}
     },
     watch: {
+      //следим, когда меняется select - и меняем значение полей
+      // в зависимости от выбранной категории
       current(categoryId) {
         const {title, limit} = this.categories.find(el => {
           return  el.id === categoryId

@@ -8,7 +8,13 @@
 
       <div v-else class="row">
         <app-category-create @created="addNewCategory" />
-        <app-category-edit :categories="categories"/>
+        <app-category-edit
+                v-if="categories.length"
+                :categories="categories"
+                @updated="updateCategories"
+                :key="categories.length + updateCount"
+        />
+        <p v-else class="center">Категорий пока нет</p>
       </div>
 
     </section>
@@ -23,12 +29,20 @@ export default {
     return {
       categories: [], //тут хранятся все категории для трат
       loading: true,
+      updateCount: 0
     };
   },
   methods: {
     addNewCategory(newCategory) {
       this.categories.push(newCategory);
       console.log(this.categories);
+    },
+    updateCategories(category) {
+      const index = this.categories.findIndex(el => el.id === category.id);
+      this.categories[index].title = category.title;
+      this.categories[index].limit = category.limit;
+      // используется для форсированной перерисовки компонента, чтобы подтянулись все актуальные данные
+      this.updateCount++
     }
   },
   async mounted() {

@@ -16,6 +16,19 @@ export default {
 				throw error
 			}
 		},
+		async updateCategory({commit, dispatch}, {title, limit,id}) {
+			try {
+				// берем айдишник конкретного юзера
+				const uid = await dispatch('getUid');
+				await Firebase.database().ref(`/users/${uid}/categories`)
+					.child(id)
+					.update({title,limit});
+
+			} catch (error) {
+				commit('setError', error)
+				throw error;
+			}
+		},
 		async fetchCategories({commit, dispatch}) {
 			try {
 				// берем айдишник конкретного юзера
